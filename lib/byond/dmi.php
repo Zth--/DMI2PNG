@@ -24,9 +24,14 @@
 
 		protected function parseMetadata() {
 
-			$metadata	= \PNGMetadataExtractor::getMetadata($this->filename);
-			$dmi		= $metadata["text"]["ImageDescription"]["x-default"];
-			$metadata	= preg_split("/\n(?!\t)/m", $dmi, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+			try {
+				$metadata	= \PNGMetadataExtractor::getMetadata($this->filename);
+				$dmi		= $metadata["text"]["ImageDescription"]["x-default"];
+				$metadata	= preg_split("/\n(?!\t)/m", $dmi, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+			} catch (\Exception $e) {
+				print "  ERROR: ". $e->getMessage() ."\n";
+				print "  Skipping file!\n";
+			}
 			
 			foreach ($metadata as $i => $block) {
 
