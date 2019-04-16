@@ -33,15 +33,17 @@ directory. If a single file is given, it will just convert that single file.
 
 Example:
 
-* x/test.dmi
+* test.dmi
   * human (4 directions)
   * robot (animated)
 
-    php index.php x/test.dmi
+After running, it will write the following folders and files:
 
-This will write the following folders and files:
-* x/test/
-  * human/human-dir1.png , human-dir2.png, etc.
+* test/
+  * human/
+    * human-dir1.png
+    * human-dir2.png
+    * etc.
   * robot.png 
 
 The new folder will be in the same folder as the DMI was.
