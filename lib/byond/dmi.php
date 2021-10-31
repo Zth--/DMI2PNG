@@ -125,22 +125,23 @@
 
 
 		public function convertToPNGs() {
-
 			$baseOutDir	= str_replace(".dmi", "/", $this->filename);
+            $baseOutDir = str_replace("vgstation13", "vgdmi", $baseOutDir);
+            print "$baseOutDir\n";
 			if (!file_exists($baseOutDir)) {
-				mkdir($baseOutDir);
+				mkdir($baseOutDir, 0777, true);
 			}
 
 			$spriteNumber	= 0;
 			foreach ($this->states as $name => $state) {
 
 				$outDir		= $baseOutDir;
-				if ($state->data['dirs'] > 1 || $state->data['frames'] > 1) {
+				/*if ($state->data['dirs'] > 1 || $state->data['frames'] > 1) {
 					$outDir	.= "$name/";
 					if (!file_exists($outDir)) {
-						mkdir($outDir);
+						mkdir($outDir, 0777, true);
 					}
-				}
+                }*/
 
 				// TODO fix: each animation state is handled first, *then* the direction
 				// rather than d1[f1,f2,f3,f4] d2[...] it seems to be f1[d1,d2,d3,d4] f2[...]
